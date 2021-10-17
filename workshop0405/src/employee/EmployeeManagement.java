@@ -1,5 +1,11 @@
 package employee;
 
+import javax.print.DocFlavor;
+import java.io.IOException;
+import java.io.StringBufferInputStream;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -7,6 +13,8 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 public class EmployeeManagement {
 
@@ -16,23 +24,30 @@ public class EmployeeManagement {
      * Complétez la fonction pour créer le Stream à partir du fichier streamingvf.cvs
      */
     private static final Supplier<Stream<String>> supplier = () -> {
-        //TODO: retourner un stream créer à partir du fichier. Aidez vous de la p.15 : "Créer des streams"
+        //: retourner un stream créer à partir du fichier. Aidez vous de la p.15 : "Créer des streams"
         //      En cas d'IOException, vous devez lancer une UncheckedIOException
-        return null;
+        try(Stream<String> lignes =
+                    Files.lines(Paths.get("../resources/streamingvf.csv"), Charset.defaultCharset())){
+            List<String> lS = lignes.collect(toList());
+            lS.forEach(System.out::println);
+        }catch (IOException e) {
+            System.out.println("Fichier introuvable.");
+        }
+        return Stream.<String>builder().build();
     };
 
     public static void main(String[] args) {
 
         System.out.println("1. Première ligne du fichier : [" + firstLine() + "]");
-        System.out.println("\n3. Noms de famille de plus de 8 lettres contenant 'K' ou 'O' :\n" + filteredLastnames());
-        System.out.println("\n4. Liste des comptes occurences de 'e' :\n" + occurencesOfE());
-        System.out.println("\n5. Tous les emails se terminent-ils par 'streamingvf.be' ? :" + allEmailCorrect());
-        System.out.println("\n6. Prénom d'un employé au log nom de famille : " + longLastName());
-        System.out.println("\n7. Nombre d'employés à mi-temps : " + numbreOfPartTimers());
-        System.out.println("\n8. Ids selon plein temps/mi-temps :");
-        timeDistrubution().forEach((k, v) -> System.out.println(k + " : " + v));
-        System.out.print("\n9. Plus long nom du fichier : ");
-        printLongestName();
+//        System.out.println("\n3. Noms de famille de plus de 8 lettres contenant 'K' ou 'O' :\n" + filteredLastnames());
+//        System.out.println("\n4. Liste des comptes occurences de 'e' :\n" + occurencesOfE());
+//        System.out.println("\n5. Tous les emails se terminent-ils par 'streamingvf.be' ? :" + allEmailCorrect());
+//        System.out.println("\n6. Prénom d'un employé au log nom de famille : " + longLastName());
+//        System.out.println("\n7. Nombre d'employés à mi-temps : " + numbreOfPartTimers());
+//        System.out.println("\n8. Ids selon plein temps/mi-temps :");
+//        timeDistrubution().forEach((k, v) -> System.out.println(k + " : " + v));
+//        System.out.print("\n9. Plus long nom du fichier : ");
+//        printLongestName();
 
     }
 
