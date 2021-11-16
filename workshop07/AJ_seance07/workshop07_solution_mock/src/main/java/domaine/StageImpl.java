@@ -2,7 +2,9 @@ package domaine;
 
 import util.Util;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * La classe Stage représente un stage. Elle connaît son intitulé,

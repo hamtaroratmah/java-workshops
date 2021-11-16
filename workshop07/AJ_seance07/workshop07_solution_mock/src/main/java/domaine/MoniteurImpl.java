@@ -1,11 +1,11 @@
 package domaine;
 
+import util.Util;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import util.Util;
 
 /**
  * La classe Moniteur représente le moniteur. Elle connaît le nom de celui-ci.
