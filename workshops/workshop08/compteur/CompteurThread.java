@@ -25,6 +25,20 @@ public class CompteurThread extends Thread {
         //      2. Quand le compte est terminé, afficher que le compteur a finit de compter.
         //         Si le gagnant actuel est null, attendre 10 ms et mettre le gagnant à this,
         //         puis afficher que ce thread est le gagnant.
+        for (int i=0; i<max; i++){
+            synchronized (CompteurThread.class){
+
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(i==max-1){
+                    System.out.println(nom + " est arrivé(e) !");
+                }
+            }
+            this.gagnant=this;
+        }//TODO affichage incorrect
     }
 
     public static CompteurThread getGagnant() {

@@ -42,7 +42,14 @@ public class Tirage {
 	 */
 	public boolean ajouterGroupe(Participant... participants) {
 		//TODO
-		return false;
+		if(participants.length==1 || participants.length==0) return false;
+		Groupe groupe = new Groupe();
+		for (int i = 0; i < participants.length; i++) {
+			if(groupe.contient(participants[i].getMail())) return false;
+			groupe.ajouter(participants[i]);
+		}
+		groupes.add(groupe);
+		return true;
 	}
 
 	/**
@@ -50,7 +57,9 @@ public class Tirage {
 	 */
 	public boolean ajouter(Participant participant) {
 		//TODO
-		return false;
+		//if(participant==null) return false;
+		this.participants.add(participant);
+		return true;
 	}
 
 	/**
@@ -70,10 +79,34 @@ public class Tirage {
 	 */
 	public Thread creerThread() {
 		//TODO
-		return null;
+		return new TirageThread();
 	}
 
 	//TODO: partie 2 implémentez la classe TirageThread qui étend Thread
 
+	public class TirageThread extends Thread{
 
+
+		@Override
+		public void run() {
+
+		}
+
+		public void tirage(Participant participant) throws TirageImpossibleException{
+
+			Stack<Groupe> groupesDuParticipant = new Stack<>();
+			ArrayList<Groupe> groupesTirage = new ArrayList<>();
+			//Séparer les groupes où se trouve le participant des autres groupes pour le tirage.
+			for (Groupe groupe : groupes) {
+				if(groupe.contient(participant.getMail())){
+					groupesDuParticipant.push(groupe);
+				}else{
+					groupesTirage.add(groupe);
+				}
+			}
+			Random random = new Random();
+			Groupe groupeTire = (Groupe) groupesTirage.get(random.nextInt(0, groupesTirage.size()-1));
+			groupeTire.supprimer(null);
+		}
+	}
 }

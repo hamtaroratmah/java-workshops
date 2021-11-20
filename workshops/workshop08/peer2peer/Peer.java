@@ -13,7 +13,7 @@ public class Peer {
     }
 
     //TODO: modifier cette méthode pour éviter le deadlock.
-    public synchronized void connecter(Peer peer) {
+    public void connecter(Peer peer) {
         if(connexions.contains(peer)) {
             System.out.println(adresse + " est déjà connecté à " + peer.adresse);
             return;

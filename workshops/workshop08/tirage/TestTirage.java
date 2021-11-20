@@ -26,7 +26,7 @@ public class TestTirage {
 
 		// Test partie 2
 		//TODO: décommenter quand vous voulez tester le tirage parallèle avec creerThread.
-		/*tirage.preparerTirage();
+		tirage.preparerTirage();
 		Thread tirageThread = tirage.creerThread();
 		Thread tirageThread2 = tirage.creerThread();
 		Thread tirageThread3 = tirage.creerThread();
@@ -47,7 +47,7 @@ public class TestTirage {
 			System.out.println("Ce tirage est valide");
 		} else {
 			System.out.println("Ce tirage n'est pas valide : certains participants ont été tirés plusieurs fois, ou certains participants tirés ont un groupe en commun avec le participants qui les a tirés.");
-		}*/
+		}
 
 	}
 
